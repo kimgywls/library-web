@@ -150,7 +150,7 @@ export default function BookDetailPage() {
         <div className="flex flex-wrap gap-3">
           {loggedIn ? (
             <>
-              {book.status === 'AVAILABLE' && (
+              {!admin && book.status === 'AVAILABLE' && (
                 <button
                   onClick={handleLoan}
                   disabled={actionLoading || alreadyLoaned}
@@ -159,7 +159,7 @@ export default function BookDetailPage() {
                   {actionLoading ? '처리 중...' : alreadyLoaned ? '이미 대출 중' : '대출 신청'}
                 </button>
               )}
-              {book.status === 'LOANED' && (
+              {!admin && book.status === 'LOANED' && (
                 <button
                   onClick={handleReserve}
                   disabled={actionLoading || alreadyLoaned || alreadyReserved}
@@ -168,7 +168,7 @@ export default function BookDetailPage() {
                   {actionLoading ? '처리 중...' : alreadyLoaned ? '이미 대출 중' : alreadyReserved ? '이미 예약 중' : '예약 신청'}
                 </button>
               )}
-              {book.status === 'RESERVED' && (
+              {!admin && book.status === 'RESERVED' && (
                 <span className="px-5 py-2 rounded-lg bg-gray-100 text-gray-500 text-sm font-medium">
                   예약 대기 중
                 </span>
